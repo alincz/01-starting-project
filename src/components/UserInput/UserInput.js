@@ -6,17 +6,14 @@ const initialUserInput = {
   " yearly-contribution": 1200,
   "expected-return": 7,
   duration: 10,
-}; //am creat un nou obiect ca sa evitam copierea datelor din state direct
-//in setUserInput din functia resetHandler
-
+};
 const UserInput = (props) => {
   const [userInput, setUserInput] = useState(initialUserInput);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    props.onCalculate(userInput); //onCalculate este un custome component care comunica cu App.js cand apelam in interiorul ei comp. <UserInput onCalculate={calculateHandler} />
-    //si cu ajutorul props o apelam
+    props.onCalculate(userInput); 
   };
 
   const resetHandler = () => {
@@ -27,7 +24,7 @@ const UserInput = (props) => {
     setUserInput((prevInput) => {
       return {
         ...prevInput, //
-        //asa actualizam dinamic acest state object ori de cate ori este executat inputChangeHandler
+       
         [input]: +value, //
       };
     });
@@ -42,10 +39,9 @@ const UserInput = (props) => {
             <input
               onChange={
                 (e) => inputChangeHandler("current-savings", e.target.value)
-                //e.target.value--este valoarea care va fi furnizata pentru parametrul(value)
-                //current-saving--o sa fie folosit ca valoare de intrare pentru parametrul(input)
+             
               }
-              value={userInput["current-savings"]} //accesam proprietatea "current-savings" si folosim valoarea acesteia ca valoare pentru acest input
+              value={userInput["current-savings"]} 
               type="number"
               id="current-savings"
             />
